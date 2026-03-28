@@ -11,7 +11,6 @@ Thats basicaly it, just run ```python main.py``` to start the program
 ### Dependencies
 - a fuzzy-find tool - can be ```fzf```, ```rofi```, ```wofi```, ```fuzzel```...
 - python-rich
-- python-pillow
 
 ## Configuration
 The main config file is in ```$XDG_CONFIG_HOME/highrowglif/config.toml``` by default.
