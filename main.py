@@ -1,3 +1,5 @@
+#/usr/bin/python3
+
 import sqlite3
 import shutil
 import subprocess
@@ -185,8 +187,18 @@ match subcommand:
         lib.print_info("Tags updated for", filename)
 
     case "remove":
-        filename = arguments[0]
-        
+        cursor.execute("SELECT filename FROM images")
+        all_filenames = [row[0] for row in cursor.fetchall()]
+
+        if not all_filenames:
+            lib.print_warn("No images in database")
+            exit(0)
+
+        choice = lib.run_fuzzy(all_filenames, FUZZY_FIND_TOOL)
+        if not choice:
+            exit(0)
+        filename = choice[0]
+
         cursor.execute("SELECT id FROM images WHERE filename = ?", (filename,))
         row = cursor.fetchone()
 
@@ -268,7 +280,7 @@ match subcommand:
 [bold]Usage:[/bold]
   highrowglif [bold]add[/bold] <file>       Move an image into the library and tag it
   highrowglif [bold]tag[/bold]              Re-tag an image (replaces existing tags)
-  highrowglif [bold]remove[/bold] <file>    Remove an image from the library and database
+  highrowglif [bold]remove[/bold]           Remove an image from the library and database
   highrowglif [bold]help[/bold]             Show this help message
   highrowglif                  Browse images by tag and copy to clipboard
 
