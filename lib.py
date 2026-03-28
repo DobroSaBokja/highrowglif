@@ -24,7 +24,7 @@ def run_fuzzy(items, tool, multi_flag=""):
     return [line for line in result.stdout.splitlines() if line.strip()]
 
 def copy_image_to_clipboard(path):
-    mime, _ = mimetypes.guess_type(image_path)
+    mime, _ = mimetypes.guess_type(path)
 
     if os.environ.get("WAYLAND_DISPLAY"):
         tool = ["wl-copy", "--type", mime]

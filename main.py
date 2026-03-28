@@ -7,6 +7,8 @@ import os
 import sys
 import tomllib
 
+from rich import print
+
 import lib
 
 args = sys.argv[1:]
@@ -258,3 +260,20 @@ match subcommand:
         lib.copy_image_to_clipboard(image_path)
 
         lib.print_info("Copied", choice[0], "to clipboard")
+    
+    case "help":
+        print("""
+[bold]highrowglif[/bold] — image manager
+
+[bold]Usage:[/bold]
+  highrowglif [bold]add[/bold] <file>       Move an image into the library and tag it
+  highrowglif [bold]tag[/bold]              Re-tag an image (replaces existing tags)
+  highrowglif [bold]remove[/bold] <file>    Remove an image from the library and database
+  highrowglif [bold]help[/bold]             Show this help message
+  highrowglif                  Browse images by tag and copy to clipboard
+
+[bold]Flags:[/bold]
+  [bold]--create-directories[/bold]         Create the operating directory if it doesn't exist
+
+[bold]Config:[/bold] ~/.config/highrowglif/config.toml
+""")
