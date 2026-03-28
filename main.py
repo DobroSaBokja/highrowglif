@@ -254,8 +254,7 @@ match subcommand:
             exit(0)
 
         image_path = OPERATING_DIRECTORY / choice[0]
-        mime, _ = mimetypes.guess_type(image_path)
-        with open(image_path, "rb") as f:
-            subprocess.run([CLIPBOARD_TOOL, "--type", mime], stdin=f)
+        
+        lib.copy_image_to_clipboard(image_path)
 
         lib.print_info("Copied", choice[0], "to clipboard")
