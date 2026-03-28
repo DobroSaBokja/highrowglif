@@ -1,4 +1,4 @@
-#/usr/bin/python3
+#!/usr/bin/python3
 
 import sqlite3
 import shutil
@@ -249,7 +249,7 @@ match subcommand:
             cursor.execute(f"""
                 SELECT DISTINCT i.filename FROM images i
                 JOIN image_tags it ON i.id = it.image_id
-                JOIN tags t ON it.id = t.id
+                JOIN tags t ON it.tag_id = t.id
                 WHERE t.name IN ({placeholders})
                 GROUP BY i.id
                 HAVING COUNT(DISTINCT t.id) = ?
