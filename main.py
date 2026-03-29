@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import sqlite3
 import shutil
 import subprocess
