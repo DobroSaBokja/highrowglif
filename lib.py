@@ -3,7 +3,6 @@ import mimetypes
 import subprocess
 import os
 import platform
-import pillow
 
 def print_info(*args):
     print("[bold green][INFO]:[/bold green]", "[green]" + " ".join(str(a) for a in args) + "[/green]")
