@@ -27,7 +27,10 @@ def run_fuzzy(items, tool, multi_flag=""):
 import platform
 import subprocess
 
-def copy_image_to_clipboard(path, mime):
+def copy_image_to_clipboard(path):
+    mime, _ = mimetypes.guess_type(path)
+    if not mime:
+        mime = "image/png"
     system = platform.system()
     if system == "Linux":
         if os.environ.get("WAYLAND_DISPLAY"):
