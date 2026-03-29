@@ -2,7 +2,7 @@ from rich import print
 import mimetypes
 import subprocess
 import os
-import system
+import platform
 import pillow
 
 def print_info(*args):
