@@ -22,7 +22,7 @@ def run_fuzzy(items, tool, multi_flag=""):
     if multi_flag:
         tool_parts.append(multi_flag)
     result = subprocess.run(tool_parts, input="\n".join(items), capture_output=True, text=True)
-    return [line for line in result.stdout.splitlines() if line.strip()]
+    return [line.strip() for line in result.stdout.splitlines() if line.strip()]
 
 import platform
 import subprocess
