@@ -240,7 +240,8 @@ match subcommand:
                 if not choice or choice[0] == "END":
                     break
                 selected_tags.append(choice[0])
-                remaining_tags.remove(choice[0])
+                if choice[0] in remaining_tags:
+                    remaining_tags.remove(choice[0])
 
         if selected_tags:
             placeholders = ",".join("?" * len(selected_tags))

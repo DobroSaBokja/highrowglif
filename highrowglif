@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-python3 /usr/local/lib/highrowglif/main.py
+python3 /usr/local/lib/highrowglif/main.py "$@"
