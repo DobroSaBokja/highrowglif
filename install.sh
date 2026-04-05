@@ -2,6 +2,8 @@ cd /tmp
 
 git clone https://github.com/DobroSaBokja/highrowglif.git
 
+sudo rm -rf /usr/local/lib/highrowglif
+
 rm highrowglif/install.sh
 rm highrowglif/README.md
 rm highrowglif/.gitignore
