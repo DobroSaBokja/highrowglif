@@ -28,17 +28,19 @@ import platform
 import subprocess
 
 def copy_image_to_clipboard(path):
-    mime, _ = mimetypes.guess_type(path)
-    if not mime:
-        mime = "image/png"
     system = platform.system()
     if system == "Linux":
+        from PIL import Image
+        import io
+        img = Image.open(path).convert("RGBA")
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        buf.seek(0)
         if os.environ.get("WAYLAND_DISPLAY"):
-            tool = ["wl-copy", "--type", mime]
+            tool = ["wl-copy", "--type", "image/png"]
         else:
-            tool = ["xclip", "-selection", "clipboard", "-t", mime, "-i"]
-        with open(path, "rb") as f:
-            subprocess.run(tool, stdin=f)
+            tool = ["xclip", "-selection", "clipboard", "-t", "image/png", "-i"]
+        subprocess.run(tool, input=buf.read())
     elif system == "Darwin":
         subprocess.run(["osascript", "-e", f'set the clipboard to (read (POSIX file "{path}") as JPEG picture)'])
     elif system == "Windows":
